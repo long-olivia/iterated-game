@@ -18,6 +18,7 @@ import json
 #final average dictionary. the key is the prompt pair, and the value is the array
 basic_final_avg={}
 discrim_final_avg={}
+base_dir="."
 #round average dictionary. the key is the prompt pair, and the value is an array of averages
 basic_round_avg={}
 discrim_round_avg={}
@@ -30,16 +31,16 @@ total_points_after_round for each model's 20th round, and averages those points.
 def final_average(path):
     a_sum=0
     b_sum=0
-    average=[]*2
+    average=[0]*2
     files=os.listdir(path)
     for file_name in files:
-        file_path = os.path.join(path, file_name)
-        file=open(file_path)
-        data=json.load(file)
-        for round in data:
-            if round["round"] == 20:
-                a_sum+=round["a_total_points_after_round"]
-                b_sum+=round["b_total_points_after_round"]
+        file_path = os.path.join(base_dir, path, file_name)
+        with open(file_path) as file:
+            data=json.load(file)
+            for round in data:
+                if round["round"] == 20:
+                    a_sum+=round["a_total_points_after_round"]
+                    b_sum+=round["b_total_points_after_round"]
     a_sum/=100
     b_sum/=100
     average[0]=a_sum
@@ -54,8 +55,20 @@ sums up the contribution for each model. When the sums are done, everything is a
 def per_round_avg(path):
     a_round_avg=[0]*20
     b_round_avg=[0]*20
-    for i in range(0,20):
-        __doc__
+    files=os.listdir(path)
+    for file_name in files:
+        file_path=os.path.join(base_dir, path, file_name)
+        with open(file_path) as file:
+            data=json.load(file)
+            for round_data in data:
+                index=round_data["round"]
+                a_round_avg[index-1]+=round_data["a_contribution"]
+                b_round_avg[index-1]+=round_data["b_contribution"]
+    a_round_avg[:] = [x / 100 for x in a_round_avg]
+    b_round_avg[:] = [x / 100 for x in b_round_avg]
+    average=[a_round_avg, b_round_avg]
+    return average
+
 """
 The run function takes a directory (basic_results or discrim_results) and runs final_average & per_round_avg for each prompt pair.
 It adds the return value of each function to the global dictionaries defined above. After it's done, it dumps the global dictionaries
@@ -74,7 +87,6 @@ def run(directory_name):
             discrim_round_avg[name] = per_round_avg(path)
 
 if __name__ == "__main__":
-    base_dir="/"
     run("basic_results")
     with open('basic_final.json', 'w') as b:
         json.dump(basic_final_avg, b)

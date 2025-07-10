@@ -35,9 +35,11 @@ labels = ['Collective Collective',
           'Self Self']
 
 x = np.arange(9)
-plt.title("Average Final Points Accumulated, GPT-4o and Sonnet 4")
+plt.title("Average Final Points Accumulated, No Name Condition")
 plt.bar(np.arange(len(gpt_basic_final)), gpt_basic_final, width=width, color='powderblue', label='GPT-4o')
 plt.bar(np.arange(len(claude_basic_final)) + width, claude_basic_final, width=width, color='teal', label='Sonnet 4')
-plt.xticks(x, labels, rotation=45, ha='right')
+plt.xticks(x, labels, rotation=-45, ha='left')
 plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)
+plt.legend()
+plt.tight_layout()
 plt.show()

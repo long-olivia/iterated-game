@@ -30,7 +30,20 @@ total_points_after_round for each model's 20th round, and averages those points.
 def final_average(path):
     a_sum=0
     b_sum=0
-    average=[]
+    average=[]*2
+    files=os.listdir(path)
+    for file_name in files:
+        file_path = os.path.join(path, file_name)
+        file=open(file_path)
+        data=json.load(file)
+        for round in data:
+            if round["round"] == 20:
+                a_sum+=round["a_total_points_after_round"]
+                b_sum+=round["b_total_points_after_round"]
+    a_sum/=100
+    b_sum/=100
+    average[0]=a_sum
+    average[1]=b_sum
     return average
 
 """

@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 gpt_basic_final = [322.872, 
              306.4719999999999, 
@@ -39,7 +40,10 @@ plt.title("Average Final Points Accumulated, No Name Condition")
 plt.bar(np.arange(len(gpt_basic_final)), gpt_basic_final, width=width, color='powderblue', label='GPT-4o')
 plt.bar(np.arange(len(claude_basic_final)) + width, claude_basic_final, width=width, color='teal', label='Sonnet 4')
 plt.xticks(x, labels, rotation=-45, ha='left')
-plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)
+plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
 plt.legend()
+ax = plt.gca()
+y_major_step=10
+ax.yaxis.set_minor_locator(mticker.MultipleLocator(y_major_step))
 plt.tight_layout()
 plt.show()

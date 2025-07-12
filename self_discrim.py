@@ -236,14 +236,13 @@ if __name__ == "__main__":
         else:
             a_prompt=sys.argv[1]
             b_prompt=sys.argv[2]
-            for i in range(0,100):
-                run(a_prompt, b_prompt)
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                output_filename = f"self_results/discrim_{a_prompt}_{b_prompt}_4o_sonnet4_{timestamp}.json"
-                os.makedirs("self_results", exist_ok=True)
-                try:
-                    with open(output_filename, 'w') as f:
-                        json.dump(results, f, indent=4) 
+            run(a_prompt, b_prompt)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_filename = f"self/discrim_{a_prompt}_{b_prompt}_4o_sonnet4_{timestamp}.json"
+            os.makedirs("self", exist_ok=True)
+            try:
+                with open(output_filename, 'w') as f:
+                    json.dump(results, f, indent=4) 
                     print(f"\nGame results saved to '{output_filename}'")
-                except IOError as e:
-                    print(f"Error saving results to file: {e}")
+            except IOError as e:
+                print(f"Error saving results to file: {e}")

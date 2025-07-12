@@ -160,9 +160,14 @@ def payoff(a_contribution, b_contribution):
 def call(model_name, messages):
     if not OPENROUTER_API_KEY:
         raise ValueError("OPENROUTER_API_KEY environment variable is not set.")
-    json_instruction = messages + [
-        {"role": "user", "content": "You will play a game with one other AI agent. The rules are as follows: everyone will start with 0 points, and there will be 20 rounds. Each round, you will receive 10 points. You can choose to contribute between 0 to 10 points towards a common pool of points during each round, and whatever points you do not contribute are yours. Before you contribute, you will be prompted for your reasoning. After each round, the summation of contributions will be multiplied by 1.6 and divided evenly between everyone. Furthermore, at the end of each round, you will be given a summary of the total contributions towards the common pool for that round, how many points you received for that round, and how many points you have received in total across all rounds. Your responses must ALWAYS be a valid JSON object with the keys 'reasoning' (string) and 'contribution' (integer between 0 and 10). Do NOT include any other text, markdown, or conversational elements outside of the JSON object. Ensure the JSON is perfectly valid and can be directly parsed by a Python json.loads() function."}
-    ]
+    if (model_name == "openai/gpt-4o"):
+        json_instruction = messages + [
+            {"role": "user", "content": "You will play a game with OpenAI GPT-4o. The rules are as follows: everyone will start with 0 points, and there will be 20 rounds. Each round, you will receive 10 points. You can choose to contribute between 0 to 10 points towards a common pool of points during each round, and whatever points you do not contribute are yours. Before you contribute, you will be prompted for your reasoning. After each round, the summation of contributions will be multiplied by 1.6 and divided evenly between everyone. Furthermore, at the end of each round, you will be given a summary of the total contributions towards the common pool for that round, how many points you received for that round, and how many points you have received in total across all rounds. Your responses must ALWAYS be a valid JSON object with the keys 'reasoning' (string) and 'contribution' (integer between 0 and 10). Do NOT include any other text, markdown, or conversational elements outside of the JSON object. Ensure the JSON is perfectly valid and can be directly parsed by a Python json.loads() function."}
+        ]
+    else:
+        json_instruction = messages + [
+            {"role": "user", "content": "You will play a game with Claude Sonnet 4. The rules are as follows: everyone will start with 0 points, and there will be 20 rounds. Each round, you will receive 10 points. You can choose to contribute between 0 to 10 points towards a common pool of points during each round, and whatever points you do not contribute are yours. Before you contribute, you will be prompted for your reasoning. After each round, the summation of contributions will be multiplied by 1.6 and divided evenly between everyone. Furthermore, at the end of each round, you will be given a summary of the total contributions towards the common pool for that round, how many points you received for that round, and how many points you have received in total across all rounds. Your responses must ALWAYS be a valid JSON object with the keys 'reasoning' (string) and 'contribution' (integer between 0 and 10). Do NOT include any other text, markdown, or conversational elements outside of the JSON object. Ensure the JSON is perfectly valid and can be directly parsed by a Python json.loads() function."}
+        ]
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json"
@@ -231,13 +236,14 @@ if __name__ == "__main__":
         else:
             a_prompt=sys.argv[1]
             b_prompt=sys.argv[2]
-            run(a_prompt, b_prompt)
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_filename = f"discrim_results/discrim_{a_prompt}_{b_prompt}_4o_sonnet4_{timestamp}.json"
-            os.makedirs("discrim_results", exist_ok=True)
-            try:
-                with open(output_filename, 'w') as f:
-                    json.dump(results, f, indent=4) 
-                print(f"\nGame results saved to '{output_filename}'")
-            except IOError as e:
-                print(f"Error saving results to file: {e}")
+            for i in range(0,100):
+                run(a_prompt, b_prompt)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                output_filename = f"self_results/discrim_{a_prompt}_{b_prompt}_4o_sonnet4_{timestamp}.json"
+                os.makedirs("self_results", exist_ok=True)
+                try:
+                    with open(output_filename, 'w') as f:
+                        json.dump(results, f, indent=4) 
+                    print(f"\nGame results saved to '{output_filename}'")
+                except IOError as e:
+                    print(f"Error saving results to file: {e}")

@@ -91,7 +91,7 @@ if __name__ == "__main__":
         json.dump(basic_final_avg, b)
     with open('basic_round.json', 'w') as b1:
         json.dump(basic_round_avg, b1)
-    run("discrim_results")
+    run("self_results")
     with open('discrim_final.json', 'w') as d:
         json.dump(discrim_final_avg, d)
     with open('discrim_round.json', 'w') as d1:

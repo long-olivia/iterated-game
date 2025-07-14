@@ -34,10 +34,15 @@ labels = ['Collective Collective',
           'Self Self']
 
 x = np.arange(9)
-plt.title("Average Final Points Accumulated, No Name Condition")
-plt.bar(np.arange(len(gpt_basic_final)), gpt_basic_final, width=width, color='powderblue', label='GPT-4o')
-plt.bar(np.arange(len(claude_basic_final)) + width, claude_basic_final, width=width, color='teal', label='Sonnet 4')
+plt.figure(figsize=(15, 7))
+plt.title("Average Final Points Accumulated Across Prompts, No Name Condition")
+gpt_bars=plt.bar(np.arange(len(gpt_basic_final)), gpt_basic_final, width=width, color='powderblue', label='GPT-4o')
+claude_bars=plt.bar(np.arange(len(claude_basic_final)) + width, claude_basic_final, width=width, color='teal', label='Sonnet 4')
+plt.bar_label(gpt_bars, fmt='%.1f')
+plt.bar_label(claude_bars, fmt='%.1f')
 plt.xticks(x, labels, rotation=-45, ha='left')
+plt.ylabel("Average Final Points Accumulated")
+plt.xlabel("Prompt Pairings: GPT-4o & Sonnet 4")
 plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
 plt.legend()
 ax = plt.gca()

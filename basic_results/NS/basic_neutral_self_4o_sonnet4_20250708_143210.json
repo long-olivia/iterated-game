@@ -186,7 +186,7 @@
         "a_gain": 10.0,
         "a_total_points_after_round": 171.8,
         "b_contribution": 0,
-        "b_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "b_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "b_gain": 10.0,
         "b_total_points_after_round": 187.8,
         "total_contribution_round": 0
@@ -194,11 +194,11 @@
     {
         "round": 17,
         "a_contribution": 0,
-        "a_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "a_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "a_gain": 10.0,
         "a_total_points_after_round": 181.8,
         "b_contribution": 0,
-        "b_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "b_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "b_gain": 10.0,
         "b_total_points_after_round": 197.8,
         "total_contribution_round": 0
@@ -206,11 +206,11 @@
     {
         "round": 18,
         "a_contribution": 0,
-        "a_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "a_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "a_gain": 10.0,
         "a_total_points_after_round": 191.8,
         "b_contribution": 0,
-        "b_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "b_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "b_gain": 10.0,
         "b_total_points_after_round": 207.8,
         "total_contribution_round": 0
@@ -218,11 +218,11 @@
     {
         "round": 19,
         "a_contribution": 0,
-        "a_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "a_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "a_gain": 10.0,
         "a_total_points_after_round": 201.8,
         "b_contribution": 0,
-        "b_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "b_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "b_gain": 10.0,
         "b_total_points_after_round": 217.8,
         "total_contribution_round": 0
@@ -230,11 +230,11 @@
     {
         "round": 20,
         "a_contribution": 0,
-        "a_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "a_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "a_gain": 10.0,
         "a_total_points_after_round": 211.8,
         "b_contribution": 0,
-        "b_reasoning": "API request error: 403 Client Error: Forbidden for url: https://openrouter.ai/api/v1/chat/completions",
+        "b_reasoning": "https://openrouter.ai/api/v1/chat/completions",
         "b_gain": 10.0,
         "b_total_points_after_round": 227.8,
         "total_contribution_round": 0

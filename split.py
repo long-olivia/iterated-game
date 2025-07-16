@@ -10,7 +10,7 @@ def extract(directory):
         with open(file_path, 'r') as file:
             data=json.load(file)
             dict={}
-            for i in range(1,2):
+            for i in range(1,21):
                 index=f"{i}"
                 dict[index]=data[index].split('\n\n')                
             with open(f"new_{name}", 'w') as f:

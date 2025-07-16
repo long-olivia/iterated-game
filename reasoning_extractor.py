@@ -2,7 +2,6 @@ import os
 import json
 
 a_reasoning={i: "" for i in range(1, 21)}
-b_reasoning={i: "" for i in range(1, 21)}
 
 def extract(directory, subdirectory):
     base_dir="."
@@ -14,14 +13,12 @@ def extract(directory, subdirectory):
             data=json.load(file)
             for reasoning in data:
                 key=reasoning["round"]
-                a=reasoning["a_reasoning"]
-                b=reasoning["b_reasoning"]
+                a=reasoning["a_reasoning"]+"\n\n"
+                b=reasoning["b_reasoning"]+"\n\n"
                 a_reasoning[key]+=a
-                b_reasoning[key]+=b
-    with open(f'{directory}_4o_{subdirectory}.json', 'w') as f:
+                a_reasoning[key]+=b
+    with open(f'{directory}_{subdirectory}.json', 'w') as f:
         json.dump(a_reasoning, f)
-    with open(f'{directory}_sonnet_{subdirectory}.json', 'w') as g:
-        json.dump(b_reasoning, g)
 
 if __name__=="__main__":
     prompt_pairs=["CC", "CN", "CS", "NC", "NN", "NS", "SC", "SN", "SS"]

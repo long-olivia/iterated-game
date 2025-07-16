@@ -7,7 +7,7 @@ import re
 and then see which words are most prevalent.
 '''
 
-#process negations
+#open all files
 def prepare(directory):
     base_dir="."
     path=os.path.join(base_dir, directory)
@@ -16,16 +16,11 @@ def prepare(directory):
         file_path=os.path.join(path, file_name)
         with open(file_path, 'r') as f:
             data=json.load(f)
-    return data
-
-def negations(directory):
-    data=prepare(directory)
-    for i in range(1,21):
-        to_negate=data[f"{i}"]
+            bag_it_up(data)
         
 
+#implement bag of words
+#TODO: need to see if I"m missing anything else for negations. Then, implement bag of word algorithm.
 
-if __name__=="__main__":
-    process_negations("TEST_CORPUS")
             
 
